@@ -118,7 +118,8 @@ void display() {
     else if(movedown){
         newY=-0.05;
     }
-    else  if(moveright){
+
+    if(moveright){
         newX=0.05;
     }
     else  if(moveleft){
@@ -139,7 +140,11 @@ void display() {
 
 // return true if collision occurs else false
 bool checkCollision(GLdouble x, GLdouble y) {
-    if (x >= -0.3 && x <= 0.3 && y >= -0.3 && y <= 0.3) return true;
+    if (x >= -0.5 && x <= 0.5 && y >= -0.45 && y <= 0.45) return true;
+    if (x >= 1.67) return true;
+    if (x <= -1.67) return true;
+    if (y >= 1.75) return true;
+    if (y <= -1.75) return true;
     return false;
 }
 

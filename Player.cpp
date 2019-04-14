@@ -7,35 +7,6 @@ public:
     }
 
     void update(GLfloat px,GLfloat py,GLfloat gx, GLfloat gy,GLfloat tx, GLfloat ty) {
-        // write code here
-
-        //player
-        glLoadIdentity();
-        glPushMatrix();
-        glTranslatef(px,py,0);
-
-
-        glBegin(GL_QUADS);
-        glColor3ub(229,57,53);
-        glVertex2f(-.3,-.1);
-        glVertex2f(-.3,.1);
-        glVertex2f(.3,.1);
-        glVertex2f(.3,-.1);
-        glEnd();
-
-        glBegin(GL_QUADS);
-
-        glColor3ub(255,235,59);
-        glVertex2f(-.2,-.2);
-        glVertex2f(-.2,.2);
-        glVertex2f(.2,.2);
-        glVertex2f(.2,-.2);
-
-        glEnd();
-
-        glPopMatrix();
-
-
         //gun
         glLoadIdentity();
         glPushMatrix();
@@ -63,6 +34,32 @@ public:
         glVertex2f(-.12,.02);
         glVertex2f(.0,.02);
         glVertex2f(-.02,-.08);
+        glEnd();
+
+        glPopMatrix();
+
+        //player
+        glLoadIdentity();
+        glPushMatrix();
+        glTranslatef(px,py,0);
+
+
+        glBegin(GL_QUADS);
+        glColor3ub(229,57,53);
+        glVertex2f(-.3,-.1);
+        glVertex2f(-.3,.1);
+        glVertex2f(.3,.1);
+        glVertex2f(.3,-.1);
+        glEnd();
+
+        glBegin(GL_QUADS);
+
+        glColor3ub(255,235,59);
+        glVertex2f(-.2,-.2);
+        glVertex2f(-.2,.2);
+        glVertex2f(.2,.2);
+        glVertex2f(.2,-.2);
+
         glEnd();
 
         glPopMatrix();

@@ -600,3 +600,29 @@
 1555271518 c:\backup\beginning-of-war\player.cpp
 	"utils.h"
 
+1555276777 source:d:\beginning-of-war\main.cpp
+	<windows.h>
+	"utils.h"
+	"Player.cpp"
+
+1555276276 d:\beginning-of-war\utils.h
+	<GL/glut.h>
+	<iostream>
+	<cmath>
+	<vector>
+	<random>
+	<ctime>
+	<algorithm>
+	"constants.h"
+
+1555276151 d:\beginning-of-war\constants.h
+
+1555276826 d:\beginning-of-war\player.cpp
+	"utils.h"
+
+1555276151 source:d:\beginning-of-war\utils.cpp
+	"utils.h"
+
+1555276826 source:d:\beginning-of-war\player.cpp
+	"utils.h"
+

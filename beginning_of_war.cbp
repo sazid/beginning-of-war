@@ -38,7 +38,12 @@
 			<Add library="gdi32" />
 			<Add directory="$(#glut.lib)" />
 		</Linker>
+		<Unit filename="Player.cpp" />
+		<Unit filename="common.h" />
+		<Unit filename="constants.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="utils.cpp" />
+		<Unit filename="utils.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
