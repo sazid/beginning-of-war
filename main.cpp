@@ -1,5 +1,6 @@
 #include <windows.h>
 #include "utils.h"
+#include "Player.cpp"
 
 void display();
 void reshape(GLsizei width, GLsizei height);
@@ -8,11 +9,20 @@ void specialKeyDown(int, int, int);
 void specialKeyUp(int, int, int);
 void keyDown(unsigned char, int, int);
 void keyUp(unsigned char, int, int);
+void createObjects();
+bool checkCollision(GLdouble, GLdouble);
 
 void Timer(GLint value);
 
 std::default_random_engine re;
 GLint refreshTimeMillis = 16;
+
+GLfloat px=-1.0f;
+GLfloat py=-1.0f;
+
+GLboolean moveup=false, movedown=false,moveright=false,moveleft=false;
+
+Player *p1;
 
 int main(int argc, char **argv) {
     // Initialize glut
@@ -48,6 +58,8 @@ int main(int argc, char **argv) {
     glutKeyboardFunc(keyDown);
     glutKeyboardUpFunc(keyUp);
 
+    createObjects();
+
     // Callback for when glut will remain idle
     // glutIdleFunc(display);
 
@@ -69,6 +81,10 @@ void Timer(GLint value) {
     glutTimerFunc(refreshTimeMillis, Timer, 0);
 }
 
+void createObjects() {
+    p1 = new Player;
+}
+
 GLdouble worldPos = 0.0;
 void display() {
     // Use the preset color (using glClearColor) to redraw the color buffer
@@ -82,11 +98,49 @@ void display() {
 	// Reset the Model-View matrix
 	glLoadIdentity();
 
-	// DRAW HERE
+	glClearColor(0.913, 0.6, 0.184, 1.0f);
+	glBegin(GL_QUADS);
+	glColor3ub(56,142,60);
+	glVertex2f(-1.95,-1.95);
+	glVertex2f(-1.95,1.95);
+	glVertex2f(1.95,1.95);
+	glVertex2f(1.95,-1.95);
+	glEnd();
+
+
+
+    p1->update(px,py,1,1,0,0);
+
+    GLdouble newX = 0, newY = 0;
+    if(moveup){
+        newY=0.05;
+    }
+    else if(movedown){
+        newY=-0.05;
+    }
+    else  if(moveright){
+        newX=0.05;
+    }
+    else  if(moveleft){
+        newX=-0.05;
+    }
+
+    if (!checkCollision(px + newX, py + newY)) {
+        px += newX;
+        py += newY;
+    } else {
+        drawString(-.3, 1, "Collided", GLUT_BITMAP_TIMES_ROMAN_24);
+    }
 
     // After all the drawing is done, swap the two buffers (double buffer)
     // MUST CALL this
     glutSwapBuffers();
+}
+
+// return true if collision occurs else false
+bool checkCollision(GLdouble x, GLdouble y) {
+    if (x >= -0.3 && x <= 0.3 && y >= -0.3 && y <= 0.3) return true;
+    return false;
 }
 
 void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
@@ -114,14 +168,54 @@ void initOpenGL() {
     glClearColor(0, 0, 0, 1);
 }
 
+
 void keyDown(unsigned char key, int x, int y) {
+
+
 }
 
 void keyUp(unsigned char key, int x, int y) {
 }
 
 void specialKeyDown(int key, int x, int y) {
+    switch(key)
+    {
+        case GLUT_KEY_UP:
+        moveup=true;
+        break;
+
+        case GLUT_KEY_DOWN:
+        movedown= true;
+        break;
+
+        case GLUT_KEY_RIGHT:
+            moveright = true;
+        break;
+
+        case GLUT_KEY_LEFT:
+            moveleft = true;
+        break;
+
+    }
 }
 
 void specialKeyUp(int key, int x, int y) {
+    switch(key)
+    {
+        case GLUT_KEY_UP:
+        moveup=false;
+        break;
+
+        case GLUT_KEY_DOWN:
+        movedown= false;
+        break;
+
+        case GLUT_KEY_RIGHT:
+            moveright = false;
+        break;
+
+        case GLUT_KEY_LEFT:
+            moveleft = false;
+        break;
+    }
 }
