@@ -17,7 +17,6 @@ void drawMountains();
 void drawSun();
 void initColors();
 void Timer(GLint value);
-void backgroundSound();
 
 std::default_random_engine re;
 GLint refreshTimeMillis = 16;
@@ -448,10 +447,6 @@ void createObjects() {
 	windmill3->setScale(1.0);
 }
 
-void backgroundSound() {
-    PlaySound("rain_thunder.wav", NULL, SND_ASYNC|SND_FILENAME);
-}
-
 int main(int argc, char **argv) {
     // Initialize glut
     glutInit(&argc, argv);
@@ -499,9 +494,6 @@ int main(int argc, char **argv) {
 
     // Callback for controlling timer (FPS)
     glutTimerFunc(0, Timer, 0);
-
-    // Play background sound
-    backgroundSound();
 
     // Start the main loop
     glutMainLoop();
