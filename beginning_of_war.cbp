@@ -20,6 +20,7 @@
 					<Add option="-std=c++1z" />
 					<Add option="-Og" />
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-O2" />
@@ -38,7 +39,17 @@
 			<Add library="gdi32" />
 			<Add directory="$(#glut.lib)" />
 		</Linker>
+		<Unit filename="common.h" />
+		<Unit filename="constants.h" />
+		<Unit filename="include/Game.h" />
+		<Unit filename="include/GameObject.h" />
+		<Unit filename="include/Player.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/GameObject.cpp" />
+		<Unit filename="src/Player.cpp" />
+		<Unit filename="utils.cpp" />
+		<Unit filename="utils.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
