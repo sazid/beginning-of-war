@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1556500264 source:c:\backup\beginning_of_war\main.cpp
+1556501411 source:c:\backup\beginning_of_war\main.cpp
 	<windows.h>
 	"utils.h"
 	"Game.h"
@@ -364,22 +364,45 @@
 1556497667 c:\backup\beginning_of_war\include\gameobject.h
 	<GL/glut.h>
 
-1556499883 source:c:\backup\beginning_of_war\src\game.cpp
+1556510036 source:c:\backup\beginning_of_war\src\game.cpp
 	"Game.h"
 	<iostream>
 
-1556499895 c:\backup\beginning_of_war\include\game.h
+1556509260 c:\backup\beginning_of_war\include\game.h
 	<vector>
 	<GL/glut.h>
+	<random>
 	"GameObject.h"
 	"Player.h"
+	"Enemy.h"
+	"Bullet.h"
+	"../utils.h"
 
-1556500710 source:c:\backup\beginning_of_war\src\player.cpp
+1556510196 source:c:\backup\beginning_of_war\src\player.cpp
 	"Player.h"
+	"Game.h"
 	<GL/glut.h>
 	<iostream>
 
-1556500603 c:\backup\beginning_of_war\include\player.h
+1556507153 c:\backup\beginning_of_war\include\player.h
 	"GameObject.h"
 	<GL/glut.h>
+
+1556506154 source:c:\backup\beginning_of_war\src\enemy.cpp
+	"Enemy.h"
+	<GL/glut.h>
+	<iostream>
+
+1556501892 c:\backup\beginning_of_war\include\enemy.h
+	"GameObject.h"
+	<GL/glut.h>
+
+1556510341 c:\backup\beginning_of_war\include\bullet.h
+	"GameObject.h"
+	<GL/glut.h>
+
+1556509847 source:c:\backup\beginning_of_war\src\bullet.cpp
+	"Bullet.h"
+	<GL/glut.h>
+	<iostream>
 

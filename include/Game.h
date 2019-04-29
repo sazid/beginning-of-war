@@ -3,13 +3,19 @@
 
 #include <vector>
 #include <GL/glut.h>
+#include <random>
 #include "GameObject.h"
 #include "Player.h"
+#include "Enemy.h"
+#include "Bullet.h"
+#include "../utils.h"
 
 class Game
 {
     public:
         GLint level;
+        GLint score;
+        GLboolean newGame;
 
         Game();
         virtual ~Game();
@@ -28,13 +34,14 @@ class Game
         // positive integer indicating the amount of damage taken
         // Also, returning negative may also be used to increase
         // health by colliding with med-kits
-        GLint collided(GameObject*);
+        GLint collided(GLdouble[4][2]);
+        std::vector<GameObject* > objects;
 
     protected:
 
     private:
-        std::vector<GameObject* > objects;
         Player *player;
+        Enemy *enemy;
 };
 
 #endif // GAME_H

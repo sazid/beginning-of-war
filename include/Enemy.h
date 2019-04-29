@@ -1,18 +1,16 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef ENEMY_H
+#define ENEMY_H
 
 #include "GameObject.h"
 #include <GL/glut.h>
 
-class Player : public GameObject
+class Enemy : public GameObject
 {
     public:
         GLint movementSpeed;
-        GLint health;
-        GLdouble angle = 0;
 
-        Player(void*, GLdouble[4][2]);
-        virtual ~Player();
+        Enemy(void*, GLdouble[4][2]);
+        virtual ~Enemy();
 
         void update() override;
         void draw() override;
@@ -28,4 +26,4 @@ class Player : public GameObject
     private:
 };
 
-#endif // PLAYER_H
+#endif // ENEMY_H

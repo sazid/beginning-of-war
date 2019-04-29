@@ -1,18 +1,16 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef BULLET_H
+#define BULLET_H
 
 #include "GameObject.h"
 #include <GL/glut.h>
 
-class Player : public GameObject
+class Bullet : public GameObject
 {
     public:
         GLint movementSpeed;
-        GLint health;
-        GLdouble angle = 0;
 
-        Player(void*, GLdouble[4][2]);
-        virtual ~Player();
+        Bullet(void*, GLdouble[4][2]);
+        virtual ~Bullet();
 
         void update() override;
         void draw() override;
@@ -28,4 +26,4 @@ class Player : public GameObject
     private:
 };
 
-#endif // PLAYER_H
+#endif // BULLET_H
