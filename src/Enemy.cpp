@@ -3,6 +3,7 @@
 
 #include <GL/glut.h>
 #include <iostream>
+#include <ctime>
 
 Enemy::Enemy(void *game, GLdouble vert[4][2], GLint h, GLdouble speed) : GameObject(game, vert)
 {
@@ -12,6 +13,8 @@ Enemy::Enemy(void *game, GLdouble vert[4][2], GLint h, GLdouble speed) : GameObj
             v[i][j] = vert[i][j];
         }
     }
+
+    time(NULL);
 
     movementSpeed = speed;
     collisionDamage = 20;
@@ -43,7 +46,7 @@ void Enemy::draw() {
     glPushMatrix();
     glTranslated(0, 0, 0);
 
-    glColor3ub(200, 200, 200);
+    glColor3ub(rand() % 255, rand() % 255, rand() % 255);
     glBegin(GL_QUADS);
 
         for (int i = 0; i < 4; ++i) {

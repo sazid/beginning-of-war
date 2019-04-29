@@ -42,7 +42,7 @@ void Game::spawnEnemy() {
         {x-10, y + 20},
         {x-10, y}
     };
-    enemy = new Enemy(this, enemyPos, 20, 2);
+    enemy = new Enemy(this, enemyPos, 20 + (10 * (score / 10)), 2 + (score / 10));
     objects.push_back(enemy);
 }
 
@@ -110,30 +110,59 @@ void Game::removeObjects() {
 }
 
 void Game::update() {
+    if (player->health <= 0) {
+        gameOver = true;
+    }
+
     int sz = objects.size();
     for (int i = 0; i < sz; ++i) {
         GameObject *o = objects[i];
         o->update();
     }
 
-    if (score % 101 == 0) ++level;
+    //if (score > 0 && score % 10 == 0) ++level;
 
     removeObjects();
 }
 
 void Game::draw() {
-    int sz = objects.size();
-    for (int i = 0; i < sz; ++i) {
-        GameObject *o = objects[i];
-        o->draw();
+    if (gameOver) {
+        drawString(-150, 9, "Game over! Press 'R' to play again.", GLUT_BITMAP_HELVETICA_18);
+    } else {
+        int sz = objects.size();
+        for (int i = 0; i < sz; ++i) {
+            GameObject *o = objects[i];
+            o->draw();
+        }
+
+        glColor3ub(50, 50, 50);
+        drawString(-290, 275, "Score: " + std::to_string(score), GLUT_BITMAP_HELVETICA_18);
+        drawString(-290, 250, "Health: " + std::to_string(player->health), GLUT_BITMAP_HELVETICA_18);
+        drawString(-290, 225, "Level: " + std::to_string(score / 10), GLUT_BITMAP_HELVETICA_18);
+    }
+}
+
+void Game::restart() {
+    level = 1;
+    score = 0;
+    player->health = 100;
+    for (GameObject *o : objects) {
+        delete o;
     }
 
-    glColor3ub(50, 50, 50);
-    drawString(-290, 275, "Score: " + std::to_string(score), GLUT_BITMAP_HELVETICA_18);
-    drawString(-290, 250, "Health: " + std::to_string(player->health), GLUT_BITMAP_HELVETICA_18);
+    objects.clear();
+    createObjects();
+    gameOver = false;
 }
 
 void Game::keyDown(unsigned char key, int x, int y) {
+    switch (key) {
+        case 'r':
+        case 'R':
+            restart();
+            break;
+    }
+
     int sz = objects.size();
     for (int i = 0; i < sz; ++i) {
         GameObject *o = objects[i];

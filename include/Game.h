@@ -15,7 +15,7 @@ class Game
     public:
         GLint level;
         GLint score;
-        GLboolean newGame;
+        GLboolean gameOver;
         GLint tickVal;
 
         Game();
@@ -27,6 +27,7 @@ class Game
 
         void createObjects();
         void spawnEnemy();
+        void restart();
 
         void specialKeyDown(int, int, int);
         void specialKeyUp(int, int, int);

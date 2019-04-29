@@ -364,11 +364,11 @@
 1556497667 c:\backup\beginning_of_war\include\gameobject.h
 	<GL/glut.h>
 
-1556514730 source:c:\backup\beginning_of_war\src\game.cpp
+1556516525 source:c:\backup\beginning_of_war\src\game.cpp
 	"Game.h"
 	<iostream>
 
-1556514645 c:\backup\beginning_of_war\include\game.h
+1556516162 c:\backup\beginning_of_war\include\game.h
 	<vector>
 	<GL/glut.h>
 	<random>
@@ -378,7 +378,7 @@
 	"Bullet.h"
 	"../utils.h"
 
-1556512401 source:c:\backup\beginning_of_war\src\player.cpp
+1556516045 source:c:\backup\beginning_of_war\src\player.cpp
 	"Player.h"
 	"Game.h"
 	<GL/glut.h>
@@ -388,11 +388,12 @@
 	"GameObject.h"
 	<GL/glut.h>
 
-1556513155 source:c:\backup\beginning_of_war\src\enemy.cpp
+1556515966 source:c:\backup\beginning_of_war\src\enemy.cpp
 	"Enemy.h"
 	"Game.h"
 	<GL/glut.h>
 	<iostream>
+	<ctime>
 
 1556511124 c:\backup\beginning_of_war\include\enemy.h
 	"GameObject.h"
