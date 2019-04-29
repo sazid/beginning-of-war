@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE);
 
     // Set window size
-    glutInitWindowSize(800, 800);
+    glutInitWindowSize(600, 600);
 
     // Set window position
     glutInitWindowPosition(100, 100);
@@ -82,7 +82,7 @@ void display() {
     // Call this to clear the current buffer and start anew
     glClear(GL_COLOR_BUFFER_BIT);
 
-    gluOrtho2D(-400, 400, -400, 400);
+    gluOrtho2D(-300, 300, -300, 300);
 
 	// To operate on Model-View matrix
 	glMatrixMode(GL_MODELVIEW);
