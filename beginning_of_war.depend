@@ -357,18 +357,27 @@
 1555262214 source:c:\backup\beginning_of_war\player.cpp
 	"utils.h"
 
-1556495740 source:c:\backup\beginning_of_war\src\gameobject.cpp
+1556497672 source:c:\backup\beginning_of_war\src\gameobject.cpp
 	"GameObject.h"
+	"Game.h"
 
-1556496154 c:\backup\beginning_of_war\include\gameobject.h
+1556497667 c:\backup\beginning_of_war\include\gameobject.h
 	<GL/glut.h>
 
-1556495846 source:c:\backup\beginning_of_war\src\game.cpp
+1556498428 source:c:\backup\beginning_of_war\src\game.cpp
 	"Game.h"
 	<iostream>
 
-1556495845 c:\backup\beginning_of_war\include\game.h
+1556498154 c:\backup\beginning_of_war\include\game.h
 	<vector>
 	<GL/glut.h>
 	"GameObject.h"
+
+1556498095 source:c:\backup\beginning_of_war\src\player.cpp
+	"Player.h"
+	<GL/glut.h>
+
+1556497942 c:\backup\beginning_of_war\include\player.h
+	"GameObject.h"
+	<GL/glut.h>
 

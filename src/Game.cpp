@@ -2,14 +2,20 @@
 
 #include <iostream>
 
-Game::Game()
+Game::Game() :
+    level(1),
+    objects()
 {
-    //ctor
+    createObjects();
 }
 
 Game::~Game()
 {
     //dtor
+}
+
+void Game::createObjects() {
+
 }
 
 GLint Game::collided(GameObject &obj) {
@@ -22,6 +28,7 @@ GLint Game::collided(GameObject &obj) {
 
 void Game::nextLevel() {
     // Depending on this->level change the current background
+    // and other player/enemy colors
 
     for (GameObject &o : this->objects) {
         o.nextLevel();

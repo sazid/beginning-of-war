@@ -14,12 +14,14 @@ class Game
         virtual ~Game();
         void update();
         void draw();
+        void nextLevel();
+
+        void createObjects();
 
         void specialKeyDown(int, int, int);
         void specialKeyUp(int, int, int);
         void keyDown(unsigned char, int, int);
         void keyUp(unsigned char, int, int);
-        void nextLevel();
 
         // Return 0 if not collided, otherwise return a
         // positive integer indicating the amount of damage taken
