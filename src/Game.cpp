@@ -42,8 +42,8 @@ void Game::spawnEnemy() {
         {x-10, y + 20},
         {x-10, y}
     };
-    enemy = new Enemy(this, enemyPos, 20 + (10 * (score / 10)), 2 + (score / 10));
-    objects.push_back(enemy);
+    Enemy *e = new Enemy(this, enemyPos, 20 + (10 * (score / 10)), 2 + (score / 10));
+    objects.push_back(e);
 }
 
 void Game::tick() {

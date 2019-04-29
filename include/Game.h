@@ -48,7 +48,6 @@ class Game
 
     private:
         Player *player;
-        Enemy *enemy;
 };
 
 #endif // GAME_H

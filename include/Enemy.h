@@ -8,7 +8,7 @@ class Enemy : public GameObject
 {
     public:
         GLint movementSpeed;
-        GLint health;
+        GLint health, originalHealth;
 
         Enemy(void*, GLdouble[4][2], GLint, GLdouble);
         virtual ~Enemy();

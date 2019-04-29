@@ -19,6 +19,7 @@ Enemy::Enemy(void *game, GLdouble vert[4][2], GLint h, GLdouble speed) : GameObj
     movementSpeed = speed;
     collisionDamage = 20;
     health = h;
+    originalHealth = h;
 }
 
 Enemy::~Enemy()
@@ -47,6 +48,21 @@ void Enemy::draw() {
     glTranslated(0, 0, 0);
 
     glColor3ub(rand() % 255, rand() % 255, rand() % 255);
+
+    GLdouble healthRatio = 100.0 * (GLdouble) health / (GLdouble) originalHealth;
+
+    if (healthRatio >= 80) {
+        glColor3ub(255, 0, 140);
+    } else if (healthRatio >= 60) {
+        glColor3ub(190, 0, 100);
+    } else if (healthRatio >= 40) {
+        glColor3ub(130, 0, 70);
+    } else if (healthRatio >= 20) {
+        glColor3ub(75, 0, 40);
+    } else {
+        glColor3ub(0, 0, 0);
+    }
+
     glBegin(GL_QUADS);
 
         for (int i = 0; i < 4; ++i) {
