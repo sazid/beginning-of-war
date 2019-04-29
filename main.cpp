@@ -1,5 +1,6 @@
 #include <windows.h>
 #include "utils.h"
+#include "Game.h"
 
 void display();
 void reshape(GLsizei width, GLsizei height);
@@ -14,6 +15,9 @@ void Timer(GLint value);
 std::default_random_engine re;
 GLint refreshTimeMillis = 16;
 
+// -------------- Game objects ----------------- //
+Game game;
+
 int main(int argc, char **argv) {
     // Initialize glut
     glutInit(&argc, argv);
@@ -24,7 +28,7 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE);
 
     // Set window size
-    glutInitWindowSize(500, 500);
+    glutInitWindowSize(800, 500);
 
     // Set window position
     glutInitWindowPosition(100, 100);
@@ -65,6 +69,9 @@ int main(int argc, char **argv) {
 }
 
 void Timer(GLint value) {
+    // UPDATE HERE
+    game.update();
+
     glutPostRedisplay();
     glutTimerFunc(refreshTimeMillis, Timer, 0);
 }
@@ -83,6 +90,7 @@ void display() {
 	glLoadIdentity();
 
 	// DRAW HERE
+	game.draw();
 
     // After all the drawing is done, swap the two buffers (double buffer)
     // MUST CALL this
@@ -111,7 +119,7 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
 
 void initOpenGL() {
     // set the color
-    glClearColor(0, 0, 0, 1);
+    glClearColor(1, 1, 1, 1);
 }
 
 void keyDown(unsigned char key, int x, int y) {
