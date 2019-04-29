@@ -4,6 +4,7 @@
 #include <vector>
 #include <GL/glut.h>
 #include "GameObject.h"
+#include "Player.h"
 
 class Game
 {
@@ -27,12 +28,13 @@ class Game
         // positive integer indicating the amount of damage taken
         // Also, returning negative may also be used to increase
         // health by colliding with med-kits
-        GLint collided(GameObject&);
+        GLint collided(GameObject*);
 
     protected:
 
     private:
-        std::vector<GameObject > objects;
+        std::vector<GameObject* > objects;
+        Player *player;
 };
 
 #endif // GAME_H
