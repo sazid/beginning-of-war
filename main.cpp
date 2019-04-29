@@ -11,9 +11,11 @@ void keyDown(unsigned char, int, int);
 void keyUp(unsigned char, int, int);
 
 void Timer(GLint value);
+void Timer2(GLint value);
 
 std::default_random_engine re;
 GLint refreshTimeMillis = 16;
+GLint secondTimerRefresh = 500;
 
 // -------------- Game objects ----------------- //
 Game game;
@@ -60,6 +62,7 @@ int main(int argc, char **argv) {
 
     // Callback for controlling timer (FPS)
     glutTimerFunc(0, Timer, 0);
+    glutTimerFunc(0, Timer2, 0);
 
     // Start the main loop
     glutMainLoop();
@@ -74,6 +77,14 @@ void Timer(GLint value) {
 
     glutPostRedisplay();
     glutTimerFunc(refreshTimeMillis, Timer, 0);
+}
+
+void Timer2(GLint value) {
+    // UPDATE HERE
+    game.tick();
+
+    glutPostRedisplay();
+    glutTimerFunc(secondTimerRefresh, Timer2, 0);
 }
 
 GLdouble worldPos = 0.0;

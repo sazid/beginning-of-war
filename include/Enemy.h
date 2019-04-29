@@ -8,8 +8,9 @@ class Enemy : public GameObject
 {
     public:
         GLint movementSpeed;
+        GLint health;
 
-        Enemy(void*, GLdouble[4][2]);
+        Enemy(void*, GLdouble[4][2], GLint, GLdouble);
         virtual ~Enemy();
 
         void update() override;

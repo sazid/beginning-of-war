@@ -1,9 +1,10 @@
 #include "Enemy.h"
+#include "Game.h"
 
 #include <GL/glut.h>
 #include <iostream>
 
-Enemy::Enemy(void *game, GLdouble vert[4][2]) : GameObject(game, vert)
+Enemy::Enemy(void *game, GLdouble vert[4][2], GLint h, GLdouble speed) : GameObject(game, vert)
 {
     this->game = game;
     for (int i = 0; i < 4; ++i) {
@@ -12,8 +13,9 @@ Enemy::Enemy(void *game, GLdouble vert[4][2]) : GameObject(game, vert)
         }
     }
 
-    movementSpeed = 5;
+    movementSpeed = speed;
     collisionDamage = 20;
+    health = h;
 }
 
 Enemy::~Enemy()
@@ -24,6 +26,16 @@ Enemy::~Enemy()
 void Enemy::update() {
     for (int i = 0; i < 4; ++i) {
         v[i][1] -= 1;
+    }
+
+    Game *g = (Game*) game;
+    GLint damage = g->collided(v, 0);
+    if (health > 0) health -= damage;
+
+    if (health <= 0) {
+        for (int i = 0; i < 4; ++i) {
+            v[i][1] = 500;
+        }
     }
 }
 
@@ -51,28 +63,6 @@ void Enemy::keyUp(unsigned char key, int x, int y) {
 }
 
 void Enemy::keyDown(unsigned char key, int x, int y) {
-    switch (key) {
-    case 'w':
-        for (int i = 0; i < 4; ++i) {
-            v[i][1] += movementSpeed;
-        }
-        break;
-    case 's':
-        for (int i = 0; i < 4; ++i) {
-            v[i][1] -= movementSpeed;
-        }
-        break;
-    case 'd':
-        for (int i = 0; i < 4; ++i) {
-            v[i][0] += movementSpeed;
-        }
-        break;
-    case 'a':
-        for (int i = 0; i < 4; ++i) {
-            v[i][0] -= movementSpeed;
-        }
-        break;
-    }
 }
 
 void Enemy::specialKeyUp(int key, int x, int y) {

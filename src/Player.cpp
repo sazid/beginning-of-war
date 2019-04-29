@@ -24,7 +24,7 @@ Player::~Player()
 
 void Player::update() {
     Game *g = (Game*) game;
-    GLint damage = g->collided(v);
+    GLint damage = g->collided(v, 1);
     if (health > 0) health -= damage;
 
     angle += 3;

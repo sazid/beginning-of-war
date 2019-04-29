@@ -16,14 +16,17 @@ class Game
         GLint level;
         GLint score;
         GLboolean newGame;
+        GLint tickVal;
 
         Game();
         virtual ~Game();
         void update();
         void draw();
         void nextLevel();
+        void tick();
 
         void createObjects();
+        void spawnEnemy();
 
         void specialKeyDown(int, int, int);
         void specialKeyUp(int, int, int);
@@ -34,8 +37,11 @@ class Game
         // positive integer indicating the amount of damage taken
         // Also, returning negative may also be used to increase
         // health by colliding with med-kits
-        GLint collided(GLdouble[4][2]);
+        GLint collided(GLdouble[4][2], GLint);
+        void removeObjects();
         std::vector<GameObject* > objects;
+        std::default_random_engine re;
+        std::uniform_real_distribution<GLdouble> *urdEnemyX, *urdEnemyY;
 
     protected:
 

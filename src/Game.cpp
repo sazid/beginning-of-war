@@ -5,8 +5,12 @@
 Game::Game() :
     level(1),
     score(0),
+    tickVal(0),
     objects()
 {
+    urdEnemyX = new std::uniform_real_distribution<GLdouble>(-300, 300);
+    urdEnemyY = new std::uniform_real_distribution<GLdouble>( 350, 450);
+
     createObjects();
 }
 
@@ -26,20 +30,29 @@ void Game::createObjects() {
     };
     player = new Player(this, pos);
     objects.push_back(player);
+}
+
+void Game::spawnEnemy() {
+    GLdouble x = (*urdEnemyX)(re);
+    GLdouble y = (*urdEnemyY)(re);
 
     GLdouble enemyPos[4][2] = {
-        {10, 140},
-        {10, 160},
-        {-10, 160},
-        {-10, 140}
+        {x+10, y},
+        {x+10, y + 20},
+        {x-10, y + 20},
+        {x-10, y}
     };
-    enemy = new Enemy(this, enemyPos);
+    enemy = new Enemy(this, enemyPos, 20, 2);
     objects.push_back(enemy);
 }
 
-GLint Game::collided(GLdouble vert[4][2]) {
+void Game::tick() {
+    spawnEnemy();
+}
+
+GLint Game::collided(GLdouble vert[4][2], GLint type) {
     int sz = (int) objects.size();
-    for (int i = 1; i < sz; ++i) {
+    for (int i = 0; i < sz; ++i) {
         GameObject *o = objects[i];
 
         GLdouble oLeft = o->v[2][0],
@@ -52,14 +65,17 @@ GLint Game::collided(GLdouble vert[4][2]) {
             objTop = vert[1][1],
             objBottom = vert[0][1];
 
-        //std::cout << "oLeft: " << oLeft << " oRight: " << oRight << " oTop: " << oTop << " oBottom: " << oBottom << '\n';
-        //std::cout << "objLeft: " << objLeft << " objRight: " << objRight << " objTop: " << objTop << " objBottom: " << objBottom << std::endl;
-
         if (objRight >= oLeft && objLeft <= oRight && objBottom <= oTop && objTop >= oBottom) {
-            for (int i = 0; i < 4; ++i) {
-            //    o->v[i][1] = 200;
+            if (type == 0 && dynamic_cast<Bullet*>(o)) {
+                // enemy with bullet
+                ++score;
+                objects.erase(objects.begin() + i);
+                return o->collisionDamage;
+            } else if (type == 1 && dynamic_cast<Enemy*>(o)) {
+                // player with enemy
+                objects.erase(objects.begin() + i);
+                return o->collisionDamage;
             }
-            return o->collisionDamage;
         }
     }
 
@@ -77,12 +93,32 @@ void Game::nextLevel() {
     }
 }
 
+void Game::removeObjects() {
+    std::vector<int> pos;
+
+    int sz = objects.size();
+    for (int i = 1; i < sz; ++i) {
+        GameObject *o = objects[i];
+        if (o->v[0][1] < -450 || o->v[1][1] > 550)
+            pos.push_back(i);
+    }
+
+    auto b = objects.begin();
+    for (int i : pos) {
+        objects.erase(b + i);
+    }
+}
+
 void Game::update() {
     int sz = objects.size();
     for (int i = 0; i < sz; ++i) {
         GameObject *o = objects[i];
         o->update();
     }
+
+    if (score % 101 == 0) ++level;
+
+    removeObjects();
 }
 
 void Game::draw() {
